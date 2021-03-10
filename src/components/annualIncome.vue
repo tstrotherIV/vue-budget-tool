@@ -2,27 +2,31 @@
   <v-container>
     <h3>Income Section</h3>
     <v-form>
-      <v-text-field outlined prepend-inner-icon="$" v-model="annualIncome" @change="updateIncome"/>
+      <v-text-field
+        outlined
+        prepend-inner-icon="$"
+        v-model="annualIncomeInput"
+        @change="updateIncome"
+      />
     </v-form>
   </v-container>
 </template>
 
 <script>
 export default {
+  props: ["annualIncomeAmount"],
   data() {
     return {
-      annualIncome: "",
+      annualIncomeInput: 0,
     };
   },
-  mounted(){
-    const persistedIncome = localStorage.getItem("annualIncome")
-    this.annualIncome = persistedIncome
+  mounted() {
+    this.annualIncomeInput = localStorage.getItem("annualIncomeAmount")
   },
   methods: {
     updateIncome() {
-      const persistedIncome = this.annualIncome
-      localStorage.setItem("annualIncome", persistedIncome)
-    }
+      this.$emit("income-status-change", this.annualIncomeInput)
+    },
   },
 };
 </script>

@@ -45,6 +45,7 @@
           </v-col>
           <v-col>
             <v-text-field
+              type="number"
               outlined
               label="Expense Amount"
               v-model="form.expense_amount"
