@@ -19,7 +19,7 @@
           <tbody>
             <tr v-for="expense in expensesList" :key="expense.name">
               <td>{{ expense.expense_name }}</td>
-              <td>{{ expense.expense_amount }}</td>
+              <td>{{ (expense.expense_amount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") }}</td>
             </tr>
           </tbody>
         </template>

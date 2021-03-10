@@ -10,14 +10,26 @@
 export default {
   props: ["expenseAmountArray", "annualIncomeAmount"],
   data() {
-    return {
-    };
+    return {};
   },
   computed: {
     sumTotal() {
-      const sumTotal = this.expenseAmountArray.reduce((a, b) => a + b, 0);
-      const netAmount = this.annualIncomeAmount - sumTotal
-      return netAmount;
+      if (this.expenseAmountArray.length === 0) {
+        const neededItems = JSON.parse(localStorage.getItem("expenses"));
+        neededItems.map((data) => {
+          this.expenseAmountArray.push(parseInt(data.expense_amount));
+        });
+        const persistedSumTotal = this.expenseAmountArray.reduce(
+          (a, b) => a + b,
+          0
+        );
+        const netAmount = this.annualIncomeAmount - persistedSumTotal;
+        return netAmount;
+      } else {
+        const sumTotal = this.expenseAmountArray.reduce((a, b) => a + b, 0);
+        const netAmount = this.annualIncomeAmount - sumTotal;
+        return netAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      }
     },
   },
 };

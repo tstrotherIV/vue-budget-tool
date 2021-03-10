@@ -24,7 +24,8 @@
       <!-- Annual net Amount -->
       <v-col cols="4" class="rounded pa-2">
         <v-card class="pa-2 boxItem">
-          <annual-net-amount :expenseAmountArray="expenseAmountArray" />
+          <annual-net-amount :expenseAmountArray="expenseAmountArray"
+          :annualIncomeAmount="annualIncomeAmount" />
         </v-card>
       </v-col>
     </v-row>
@@ -44,7 +45,10 @@
       <!-- Monthly Expense Graph Section -->
       <v-col cols="6" class="rounded px-2">
         <v-card class="pa-2 boxItem">
-          <monthly-expense-breakdown />
+          <monthly-expense-breakdown 
+          :expensesList="expensesList"
+          :annualIncomeAmount="annualIncomeAmount"
+          />
         </v-card>
       </v-col>
     </v-row>
@@ -77,6 +81,7 @@ export default {
   mounted() {
     const persistedExpenses = localStorage.getItem("expenses");
     this.expensesList = JSON.parse(persistedExpenses) || [];
+    
 
     const persistedTotalExpenses = localStorage.getItem("expensesTotal");
     this.totalOfExpenses = JSON.parse(persistedTotalExpenses) || "";

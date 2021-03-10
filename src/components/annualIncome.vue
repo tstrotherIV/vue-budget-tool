@@ -21,7 +21,7 @@ export default {
     };
   },
   mounted() {
-    this.annualIncomeInput = localStorage.getItem("annualIncomeAmount")
+    this.annualIncomeInput = localStorage.getItem("annualIncomeAmount").toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
   },
   methods: {
     updateIncome() {

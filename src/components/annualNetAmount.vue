@@ -8,12 +8,13 @@
 
 <script>
 export default {
-  props: ["expenseAmountArray"],
+  props: ["expenseAmountArray", "annualIncomeAmount"],
   computed: {
     sumNetAmount() {
       const sumTotal = this.expenseAmountArray.reduce((a, b) => a + b, 0);
       const netAmount = sumTotal * 12;
-      return netAmount;
+      const annualAmont = this.annualIncomeAmount * 12
+      return (annualAmont - netAmount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     },
   },
 };

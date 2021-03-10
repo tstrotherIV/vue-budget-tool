@@ -1,11 +1,28 @@
 <template>
   <v-container>
-    <h3>Monthly Expense Breakdown</h3>
+    <v-card height="100%">
+      <v-card-title class="purple--text"
+        >Monthly Expense Breakdown</v-card-title
+      >
+      <apexchart type="pie" :options="options" :series="series" height="300" />
+    </v-card>
   </v-container>
 </template>
 
 <script>
-export default {};
+export default {
+  props: ["expensesList", "annualIncomeAmount"],
+  computed: {
+    series() {
+      return this.expensesList.map(e => parseInt(e.expense_amount));
+    },
+    options() {
+      return {
+        labels: this.expensesList.map(e => e.expense_name)
+      };
+    }
+  }
+};
 </script>
 
 <style></style>
