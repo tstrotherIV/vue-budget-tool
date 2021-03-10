@@ -17,7 +17,7 @@ export default {
   props: ["annualIncomeAmount"],
   data() {
     return {
-      annualIncomeInput: 0,
+      annualIncomeInput: 0
     };
   },
   mounted() {
