@@ -15,7 +15,7 @@ export default {
   computed: {
     sumTotal() {
       if (this.expenseAmountArray.length === 0) {
-        const neededItems = JSON.parse(localStorage.getItem("expenses"));
+        const neededItems = JSON.parse(localStorage.getItem("expenses")) || [];
         neededItems.map((data) => {
           this.expenseAmountArray.push(parseInt(data.expense_amount));
         });
